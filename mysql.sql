@@ -1,0 +1,40 @@
+CREATE TABLE `Person` (
+	`ID_Person` INT NOT NULL AUTO_INCREMENT,
+	`Full_Name` VARCHAR(50) NOT NULL,
+	`Gender` BOOLEAN NOT NULL,
+	`Address` VARCHAR(80) NOT NULL,
+	`DOB` DATE NOT NULL,
+	PRIMARY KEY (`ID_Person`)
+);
+
+CREATE TABLE `MO` (
+	`ID_MO` INT NOT NULL AUTO_INCREMENT,
+	`Title` VARCHAR(60) NOT NULL,
+	`First_Code` VARCHAR(5) NOT NULL,
+	`Second_Code` VARCHAR(5) NOT NULL,
+	`Psychiatrist` VARCHAR(25) NOT NULL,
+	`Narcologist` VARCHAR(25) NOT NULL,
+	`Ophthalmologist` VARCHAR(25) NOT NULL,
+	`Therapist` VARCHAR(25) NOT NULL,
+	PRIMARY KEY (`ID_MO`)
+);
+
+CREATE TABLE `Document` (
+	`ID_Document` INT NOT NULL,
+	`P_Status` BOOLEAN NOT NULL,
+	`P_Date` DATE NOT NULL,
+	`N_Status` BOOLEAN NOT NULL,
+	`N_Date` DATE NOT NULL,
+	`O_Status` BOOLEAN NOT NULL,
+	`O_Date` DATE NOT NULL,
+	`T_Status` BOOLEAN NOT NULL,
+	`T_Date` DATE NOT NULL,
+	`ID_MO` INT NOT NULL,
+	`ID_Person` INT NOT NULL,
+	PRIMARY KEY (`ID_Document`)
+);
+
+ALTER TABLE `Document` ADD CONSTRAINT `Document_fk0` FOREIGN KEY (`ID_MO`) REFERENCES `MO`(`ID_MO`);
+
+ALTER TABLE `Document` ADD CONSTRAINT `Document_fk1` FOREIGN KEY (`ID_Person`) REFERENCES `Person`(`ID_Person`);
+
